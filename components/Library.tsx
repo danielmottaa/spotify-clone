@@ -1,39 +1,57 @@
-"use client"
+"use client";
 
-import { TbPlaylist } from 'react-icons/tb'
-import { AiOutlinePlus } from 'react-icons/ai'
+import { TbPlaylist } from "react-icons/tb";
+import { AiOutlinePlus } from "react-icons/ai";
+import useAuthModal from "@/hooks/useAuthjModal";
+import { useUser } from "@/hooks/useUser";
+import useUploadModal from "@/hooks/useUploadModal";
+
 
 const Library = () => {
-  
+  const authModal = useAuthModal();
+  const uploadModal = useUploadModal()
+  const { user, subscription } = useUser()
+
   const onClick = () => {
+    if(!user) {
+      return authModal.onOpen()
+    }
+
+    return uploadModal.onOpen()
     //handle upload later
-  }
+  };
 
   return (
     <div className="flex flex-col">
-      <div className="
+      <div
+        className="
       flex
       items-center
       justify-between
       px-5
       pt-4
-      ">
-        <div className="
+      "
+      >
+        <div
+          className="
         inline-flex
         items-center
         gap-x-2
-        ">
+        "
+        >
           <TbPlaylist className={"text-neutral-400"} size={26} />
-          <p className='
+          <p
+            className="
           text-neutral-400
           font-medium
           text-md
-          '>
+          "
+          >
             Suas Playlists
           </p>
         </div>
-        <AiOutlinePlus 
-          onClieck={onClick}
+        <AiOutlinePlus
+          onClick={onClick}
           size={20}
           className="
             text-neutral-400
@@ -43,17 +61,19 @@ const Library = () => {
           "
         />
       </div>
-      <div className='
+      <div
+        className="
       flex
       flex-col
       grap-y-2
       mt-4
       px-3
-      '>
+      "
+      >
         lista de músicas
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Library;

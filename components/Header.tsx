@@ -28,9 +28,9 @@ const Header: React.FC<IHeader> = ({ children, className }) => {
     router.refresh();
 
     if (error) {
-      toast.error(error.message)
+      toast.error(error.message);
     } else {
-      toast.success('Logado com sucesso!')
+      toast.success("Deslogado com sucesso!");
     }
   };
 
@@ -132,14 +132,11 @@ const Header: React.FC<IHeader> = ({ children, className }) => {
         >
           {user ? (
             <div className="flex gap-x-4 items-center">
-              <Button 
-              onClick={handleLogout}
-              className="bg-white px-6 py-2"
-              >
+              <Button onClick={handleLogout} className="bg-white px-6 py-2">
                 Sair
               </Button>
               <Button
-                onClick={() => router.push('/account')}
+                onClick={() => router.push("/account")}
                 className="bg-white"
               >
                 <FaUserAlt />
